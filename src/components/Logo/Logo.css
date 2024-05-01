@@ -1,0 +1,18 @@
+.logo {
+  margin: auto;
+  width: 192px;
+  height: 32px;
+  color: #fff;
+  cursor: default;
+  /* transition: 0.3s opacity; */
+}
+
+.logo-wrap {
+  margin: 0;
+  width: 240px;
+  height: 80px;
+  display: flex;
+  background-color: #c20012;
+  cursor: default;
+  /* transition: 0.3s opacity; */
+}

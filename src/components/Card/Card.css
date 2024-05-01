@@ -1,0 +1,137 @@
+.card {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: #222222;
+  box-sizing: border-box;
+}
+
+.card:hover .card__heading {
+  color: rgb(255, 68, 86);
+}
+
+.card:hover .card__image {
+  transform: scale(1.05);
+}
+
+.card .card__image {
+  transition: transform 0.8s ease;
+}
+
+.card__link {
+  position: relative;
+  text-decoration: none;
+}
+
+.card__image-container {
+  display: block;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.card__image {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  aspect-ratio: 608/423;
+  transition: 0.3s opacity;
+}
+
+.card__image:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.card__details {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 12px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100px;
+  text-align: left;
+}
+
+.card__heading {
+  color: #fff;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+}
+
+.card__price {
+  color: #8b8b8b;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+}
+
+.card__labels {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.card__label {
+  background-color: rgb(24, 26, 27);
+  color: rgb(195, 190, 182);
+  display: block;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 16px;
+  z-index: 3;
+}
+
+.card__save {
+  width: 16px;
+  height: 22px;
+  border: none;
+  margin: 2px 0 0 5px;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  /* background-image: url(../../images/saved.svg); */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+  transition: 0.3s opacity;
+}
+
+.card__save:hover {
+  opacity: 0.7;
+}
+
+/* .card__save_active { */
+/* background-image: url(../../images/saved-active.svg); */
+/* } */
+
+.card__delete {
+  width: 16px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  /* background-image: url(../../images/delete.svg); */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  transition: 0.3s opacity;
+}
+
+.card__delete:hover {
+  opacity: 0.7;
+}

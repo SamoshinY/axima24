@@ -1,0 +1,85 @@
+.contacts {
+  width: 100%;
+  background-color: #181a1b;
+}
+
+.contacts__box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax(min-content, max-content);
+  grid-row-gap: 32px;
+  grid-column-gap: 25px;
+  padding: 50px 140px;
+  color: #fff;
+}
+
+.contacts__place {
+  padding: 30px;
+  background-color: #202020;
+  border-radius: 5px;
+}
+
+.contacts__place-title {
+  font-size: 32px;
+  line-height: 36px;
+}
+
+.contacts__item {
+  width: 100%;
+  text-decoration: none;
+  color: aliceblue;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.contacts__item-wrap {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.contacts__tel-icon {
+  background-image: url('../../images/contact-icons/contact-phone-svgrepo-com.svg');
+  width: 25px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  background-size: 25px 18px;
+  background-repeat: no-repeat;
+}
+
+.contacts__mail-icon {
+  background-image: url('../../images/contact-icons/contact-mail-svgrepo-com.svg');
+  width: 25px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  background-size: 25px 18px;
+  background-repeat: no-repeat;
+}
+
+.contacts__geo-icon {
+  background-image: url('../../images/contact-icons/contact-map-pin-svgrepo-com.svg');
+  width: 25px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  background-size: 25px 18px;
+  background-repeat: no-repeat;
+}
+
+.contacts__clocks-icon {
+  background-image: url('../../images/contact-icons/clock-svgrepo-com.svg');
+  width: 25px;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+  background-size: 25px 18px;
+  background-repeat: no-repeat;
+}
+
+.contacts__map {
+  width: 70%;
+  height: 420px;
+  margin: 0 145px;
+}

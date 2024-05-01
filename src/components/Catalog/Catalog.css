@@ -1,0 +1,23 @@
+.catalog {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: #181a1b;
+}
+
+.catalog__content {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0 150px 100px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: minmax(min-content, max-content);
+  grid-row-gap: 50px;
+  grid-column-gap: 80px;
+}

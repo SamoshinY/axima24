@@ -1,0 +1,248 @@
+.about {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(19, 21, 22);
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.about__brand {
+  display: flex;
+  background-color: #202020;
+}
+
+.about__brand-wrap {
+  padding: 60px 150px;
+}
+
+.about__brand-title {
+  padding-bottom: 10px;
+  font-size: 30px;
+  line-height: 40px;
+}
+
+.about__brand-text {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.about__brand-text_span {
+  color: rgb(255, 68, 86);
+}
+
+.about__brand-image {
+  object-fit: cover;
+  overflow: hidden;
+  width: 1500px;
+}
+
+.about__factory {
+  padding: 87px 145px;
+  background-color: rgb(19, 21, 22);
+}
+
+.about__factory-title {
+  margin: 0 0 16px;
+  font-size: 32px;
+  line-height: 36px;
+}
+
+.about__factory-subtitle {
+  font-size: 27px;
+  margin: 64px 0 16px;
+}
+
+.about__factory-text {
+  width: 70%;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.about__modernization {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #3a3c39;
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.about__modernization-image {
+  object-fit: cover;
+  overflow: hidden;
+  min-width: 50%;
+}
+
+.about__modernization-wrap {
+  padding: 92px 12px 88px 92px;
+}
+
+.about__modernization-title {
+  width: 45%;
+  margin: 10px 0;
+  padding-bottom: 5px;
+  font-size: 34px;
+  line-height: 45px;
+}
+
+.about__modernization-text {
+  width: 80%;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.about__modernization:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 42px;
+  background-image: url('../../images/vkz.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: inline-flex;
+  opacity: 0.1;
+  z-index: 1;
+  width: 135px;
+  height: 165px;
+}
+
+.about__production {
+  padding: 87px 145px 30px;
+  background-color: rgb(19, 21, 22);
+}
+
+.about__production-title {
+  font-size: 27px;
+  margin: 0 0 16px;
+}
+
+.about__production-text {
+  width: 50%;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.about__production-text_in-cell {
+  width: 100%;
+}
+
+.about__production-digits {
+  width: 100%;
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.about__production-column {
+  width: 290px;
+}
+
+.about__production-digit {
+  margin: 10px 0 0;
+  color: rgb(255, 68, 86);
+  font-size: 22px;
+}
+
+.about__quality {
+  padding: 87px 145px 30px;
+  background-color: #202020;
+}
+
+.about__quality-title {
+  font-size: 27px;
+  margin: 0 0 16px;
+}
+
+.about__quality-text {
+  width: 70%;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.about__quality-columns {
+  width: 100%;
+  display: flex;
+  list-style-type: unset;
+  padding: 0;
+}
+
+.about__quality-column {
+  width: 290px;
+}
+
+.about__assortment {
+  display: flex;
+  background-color: rgb(19, 21, 22);
+  padding: 78px 145px 102px;
+}
+
+.about__assortment-wrap {
+  padding: 60px 0;
+}
+
+.about__assortment-title {
+  padding-bottom: 10px;
+  font-size: 22px;
+  line-height: 25px;
+  margin: 0;
+  padding: 0;
+  width: 85%;
+}
+
+.about__assortment-text {
+  font-size: 16px;
+  line-height: 24px;
+  width: 85%;
+}
+
+.about__assortment-text_span {
+  color: rgb(255, 68, 86);
+}
+
+.about__assortment-image {
+  object-fit: cover;
+  overflow: hidden;
+  min-width: 50%;
+}
+
+.about__video {
+  margin: 0 145px;
+  background-color: rgb(19, 21, 22);
+}
+
+.about__video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.about__video-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-width: 0;
+  outline-width: 0;
+}
+
+.about__video-iframe::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}

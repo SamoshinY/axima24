@@ -1,0 +1,10 @@
+.breadcrumbs {
+  /* max-width: 1200px; */
+  padding: 105px 145px 20px;
+  background-color: #181a1b;
+}
+
+.breadcrumbs a {
+  color: #ddd;
+  text-decoration: none;
+}

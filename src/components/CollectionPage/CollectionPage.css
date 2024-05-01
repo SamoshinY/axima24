@@ -1,0 +1,88 @@
+.collection-page {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #3a3c39;
+  box-sizing: border-box;
+  color: #fff;
+}
+
+.collection-page__info {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.collection-page__wrap {
+  padding: 50px 60px 0;
+}
+
+.collection-page__label {
+  position: absolute;
+  top: 50px;
+  right: 120px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  background-color: rgb(24, 26, 27);
+  color: rgb(195, 190, 182);
+  display: block;
+  padding: 4px 8px;
+  font-size: 14px;
+  line-height: 16px;
+  z-index: 3;
+}
+
+.collection-page__info:before,
+.collection-page__info:after {
+  content: '';
+  position: absolute;
+  bottom: -30px;
+  right: -50px;
+  background-image: url('../../images/fon.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: inline-flex;
+  opacity: 0.1;
+  z-index: 1;
+  width: 300px;
+  height: 200px;
+}
+.collection-page__info:after {
+  right: 200px;
+}
+
+.collection-page__info:before {
+  right: -80px;
+}
+
+.collection-page__axima {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.collection-page__title {
+  width: 50%;
+  margin: 10px 0;
+  padding-bottom: 5px;
+  font-size: 60px;
+  line-height: 65px;
+}
+
+.collection-page__text {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.collection-page__image {
+  object-fit: cover;
+  overflow: hidden;
+  max-width: 50%;
+}
+
+.collection-page__details {
+  width: 100%;
+  height: 200px;
+  background-color: #202020;
+}
