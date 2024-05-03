@@ -1,0 +1,36 @@
+.filter__button {
+  width: auto;
+  height: 36px;
+  margin: 0 15px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
+  transition: 0.3s color;
+}
+
+.filter__button_active {
+  width: auto;
+  height: 36px;
+  margin: 0 15px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid rgb(255, 68, 86);
+  /* color: #fff; */
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
+  transition: 0.3s color;
+  color: rgb(255, 68, 86);
+  /* outline: 2px solid rgb(255, 68, 86); */
+}
+
+.filter__button:hover {
+  color: rgb(255, 68, 86);
+  opacity: 0.8;
+  cursor: pointer;
+}

@@ -14,11 +14,11 @@ function Breadcrumbs() {
         const isLast = index === pathnames.length - 1;
 
         return isLast ? (
-          <span key={breadcrumbPath}> / {name}</span>
+          <span key={breadcrumbPath}> &rsaquo; {name}</span>
         ) : (
           <span key={breadcrumbPath}>
             {' '}
-            / <Link to={breadcrumbPath}>{name}</Link>
+            &rsaquo; <Link to={breadcrumbPath}>{name}</Link>
           </span>
         );
       })}

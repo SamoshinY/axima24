@@ -1,5 +1,5 @@
 import './Navigation.css';
-import profile from '../../images/profile_icon.svg';
+import favorites from '../../images/favorite_icon.svg';
 import { NavLink } from 'react-router-dom';
 
 const Navigation = ({ isOpen, handleClick }) => {
@@ -53,21 +53,28 @@ const Navigation = ({ isOpen, handleClick }) => {
             Контакты
           </NavLink>
         </div>
-
-        <NavLink
-          to="/profile"
-          className="navigation__profile-link"
-          onClick={handleClick}
-        >
-          Аккаунт
-          <div className="navigation__profile-icon-wrap">
-            <img
-              src={profile}
-              className="navigation__profile-icon"
-              alt="Войти в профиль"
-            ></img>
+        <div className="navigation__wrap">
+          <div className="navigation__contact">
+            <p className="navigation__contact-text">Отдел продаж</p>
+            <p className="navigation__contact-tel">
+              +7&nbsp;391&nbsp;23-23-816
+            </p>
           </div>
-        </NavLink>
+          <NavLink
+            to="/favorites"
+            className="navigation__favorites-link"
+            onClick={handleClick}
+          >
+            <div className="navigation__favorites-icon-wrap">
+              <img
+                src={favorites}
+                className="navigation__favorites-icon"
+                alt="Войти в профиль"
+              ></img>
+              <span className="navigation__favorites-label">Избранное</span>
+            </div>
+          </NavLink>
+        </div>
       </nav>
     </section>
   );

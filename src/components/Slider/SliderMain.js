@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './SliderPauseOnHover.css';
+import './SliderMain.css';
 // import { prevArrow, nextArrow } from './config';
 // import nextArrow from '../../images/nextArrow.svg';
 // import prevArrow from '../../images/prevArrov.svg';
@@ -11,35 +11,7 @@ import image2 from '../../images/assets/5610a8f59e0cbe5e0aaf9ddc5e583687_2880x11
 import image3 from '../../images/assets/5c320c50a7105ae67cfc226442083e0b_2880x1184x1.jpg';
 import image4 from '../../images/assets/1eae48520ece1588e5d0c0a575db6479_2880x1184x1.jpg';
 
-const SliderPauseOnHover = () => {
-  // function SampleNextArrow(props) {
-  //   const { style, onClick } = props;
-  //   return (
-  //     <div
-  //       className={'slick-arrow'}
-  //       style={{
-  //         ...style,
-  //         right: '50px',
-  //       }}
-  //       onClick={onClick}
-  //     />
-  //   );
-  // }
-
-  // function SamplePrevArrow(props) {
-  //   const { style, onClick } = props;
-  //   return (
-  //     <div
-  //       className={'slick-arrow'}
-  //       style={{
-  //         ...style,
-  //         left: '50px',
-  //       }}
-  //       onClick={onClick}
-  //     />
-  //   );
-  // }
-
+const SliderMain = () => {
   const settings = {
     arrows: true,
     dots: true,
@@ -47,12 +19,10 @@ const SliderPauseOnHover = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 4000,
     speed: 1000,
-    pauseOnHover: true,
-    waitForAnimate: true,
-    // prevArrow: <SamplePrevArrow />,
-    // nextArrow: <SampleNextArrow />,
+    pauseOnHover: false,
+    // waitForAnimate: true,
   };
 
   return (
@@ -75,4 +45,4 @@ const SliderPauseOnHover = () => {
   );
 };
 
-export default SliderPauseOnHover;
+export default SliderMain;

@@ -1,5 +1,7 @@
 .navigation {
+  display: flex;
   width: 100%;
+  min-height: 74px;
 }
 
 @media screen and (max-width: 830px) {
@@ -30,7 +32,7 @@
 .navigation__container {
   width: 100%;
   margin-left: 30px;
-  min-height: 30px;
+  min-height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -172,10 +174,14 @@
   cursor: default;
 }
 
-.navigation__profile-link {
-  width: 200px;
+.navigation__favorites-link {
+  width: 80px;
+  min-height: 74px;
+  margin: 0 70px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   font-size: 14px;
   line-height: 16px;
@@ -185,37 +191,49 @@
 }
 
 @media screen and (max-width: 830px) {
-  .navigation__profile-link {
-    margin-bottom: 92px;
+  .navigation__favorites-link {
+    width: 50px;
+    height: 100%;
+    /* margin-bottom: 92px; */
   }
 }
 
 @media screen and (max-width: 520px) {
-  .navigation__profile-link {
-    margin-bottom: 48px;
+  .navigation__favorites-link {
+    /* margin-bottom: 48px; */
   }
 }
 
-.navigation__profile-link:hover {
+.navigation__favorites-link:hover {
   opacity: 0.7;
 }
 
-.navigation__profile-icon-wrap {
-  width: 26px;
+.navigation__favorites-icon-wrap {
+  width: 30px;
   height: 30px;
   border-radius: 4px;
-  margin-left: 17px;
+  margin: 0;
   display: flex;
-  background-color: #313131;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
 }
 
-.navigation__profile-icon {
-  width: 11.5px;
-  height: 14px;
-  margin: auto;
+.navigation__favorites-icon {
+  width: 23px;
+  height: 20px;
+  margin: 0 0 5px;
+  stroke: #fff;
+  fill: #fff;
 }
 
-.navigation__profile-button {
+.navigation__favorites-label {
+  color: #fff;
+  font-size: 12px;
+}
+
+.navigation__favorites-button {
   width: 76px;
   height: 32px;
   margin-top: auto;
@@ -227,4 +245,28 @@
   line-height: 16px;
   font-weight: 500;
   color: #000;
+}
+
+.navigation__contact {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 150px;
+  align-items: end;
+}
+
+.navigation__contact-text {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+}
+
+.navigation__contact-tel {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 20px;
+  color: #fff;
 }

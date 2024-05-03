@@ -1,5 +1,6 @@
 import './CollectionPage.css';
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { collections } from '../../utils/collections';
 import BreadcrumbsMe from '../BreadcrumbsMe/BreadcrumbsMe';
 
@@ -7,10 +8,28 @@ const CollectionPage = () => {
   let { collection } = useParams();
   const product = collections.find((f) => f.url === collection);
 
+  const [isLiked, setisLiked] = useState(false);
+
+  const handleCardLike = () => {
+    setisLiked(!isLiked);
+  };
+
+  const cardLikeButtonClassName = `collection-page__info-like ${
+    isLiked && 'collection-page__info-like_active'
+  }`;
+
   return (
     <div className="collection-page" aria-label="Страницв товара">
       <BreadcrumbsMe />
       <section className="collection-page__info">
+        <div className="collection-page__info-like-wrap">
+          <button
+            type="button"
+            className={cardLikeButtonClassName}
+            onClick={handleCardLike}
+          ></button>
+          <span className="collection-page__info-like-text">В избранное</span>
+        </div>
         {product.label ? (
           <span className="collection-page__label">{product.label}</span>
         ) : null}

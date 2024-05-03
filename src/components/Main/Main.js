@@ -1,5 +1,5 @@
 import './Main.css';
-import SliderPauseOnHover from '../Slider/SliderPauseOnHover';
+import SliderMain from '../Slider/SliderMain';
 import Section from '../Section/Section';
 import InfoCenter from '../InfoCenter/InfoCenter';
 import PromoSection from '../PromoSection/PromoSection';
@@ -15,7 +15,7 @@ function Main() {
 
   return (
     <div className="Main">
-      <SliderPauseOnHover />
+      <SliderMain />
       <Section
         caption={categorys[0].name}
         list={filteredList(categorys[0].name)}

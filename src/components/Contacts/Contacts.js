@@ -77,7 +77,7 @@ function Contacts() {
           <h2 className="contacts__place-title">Склад</h2>
           <a href="tel:+74991706510" className="contacts__item">
             <div className="contacts__item-wrap">
-              <span className="contacts__tel-icon"></span>&nbsp;+7 499 170-65-10
+              <span className="contacts__tel-icon"></span>&nbsp;+7 391 23-23-816
             </div>
           </a>
           <a href="mailto:axima24@mail.ru" className="contacts__item">
