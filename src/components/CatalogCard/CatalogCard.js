@@ -1,15 +1,22 @@
 import './CatalogCard.css';
 import { Link } from 'react-router-dom';
 
-const CatalogCard = ({ name, link, category }) => {
+const CatalogCard = ({ card, handleCatalogCardClick }) => {
+  const handleClick = () => {
+    handleCatalogCardClick(card);
+  };
   return (
     <article className="catalog-card" aria-label="Карточка">
-      <Link to={category} className="catalog-card__link">
+      <Link to={card.path} className="catalog-card__link" onClick={handleClick}>
         <div className="catalog-card__image-container">
-          <img className="catalog-card__image" src={link} alt={name} />
+          <img
+            className="catalog-card__image"
+            src={card.link}
+            alt={card.name}
+          />
         </div>
         <div className="card__details">
-          <p className="catalog-card__heading">{name}</p>
+          <p className="catalog-card__heading">{card.name}</p>
         </div>
       </Link>
     </article>

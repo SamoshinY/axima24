@@ -1,10 +1,14 @@
 import './Card.css';
 import { Link } from 'react-router-dom';
 
-const Card = ({ card, url }) => {
+const Card = ({ card, url, handleCardClick }) => {
+  const handleClick = () => {
+    handleCardClick(card);
+  };
+
   return (
     <article className="card" aria-label="Карточка">
-      <Link to={url} className="card__link">
+      <Link to={url} className="card__link" onClick={handleClick}>
         <div className="card__labels">
           {card.label ? (
             <span className="card__label">{card.label}</span>

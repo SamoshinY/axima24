@@ -1,19 +1,12 @@
 import './CatalogSection.css';
 import { useState } from 'react';
 import PageHeader from '../PageHeader/PageHeader';
-import { useParams } from 'react-router-dom';
-import { categorys } from '../../utils/categorys';
-import { collections } from '../../utils/collections';
 import CardList from '../CardList/CardList';
-import Card from '../Card/Card';
 import Filter from '../Filter/Filter';
 
-const CatalogSection = () => {
-  let { category } = useParams();
-  const section = categorys.find((c) => c.path === category);
-
+const CatalogSection = ({ collections, category, handleCardClick }) => {
   const sectionList = collections.filter((collection) =>
-    collection.category.some((value) => value === section.name)
+    collection.category.some((value) => value === category.name)
   );
 
   const [sizeFilter, setSizeFilter] = useState(sectionList);
@@ -26,21 +19,20 @@ const CatalogSection = () => {
         'Все' === event.target.name
     );
     setSizeFilter(filteredSizeList);
-    console.log(event.target.name);
   };
-
-  const cardList = sizeFilter.map((card) => {
-    return <Card card={card} url={card.url} key={card.id} />;
-  });
 
   return (
     <div className="catalog-section" aria-label="Раздел каталога">
-      <PageHeader header={section.name} />
+      <PageHeader header={category.name} />
       <Filter
         initialList={sectionList}
         handleButtonClick={handleFilterButtonClick}
       />
-      <CardList cardList={cardList} />
+      <CardList
+        cardList={sizeFilter}
+        url={`catalog/${category.path}`}
+        handleCardClick={handleCardClick}
+      />
     </div>
   );
 };

@@ -1,29 +1,24 @@
 import './Section.css';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import CardList from '../CardList/CardList';
-import Card from '../Card/Card';
 import MoreButton from '..//MoreButton/MoreButton';
 import { usePagination } from '../../hooks/usePagination';
 import { Link } from 'react-router-dom';
 
-const Section = ({ caption, list, section_url }) => {
+const Section = ({ caption, list, section_url, handleCardClick }) => {
   const { handleShowMoreCards, cardsToShow, count, chunkSize } =
     usePagination(list);
 
-  const cardList = cardsToShow.map((card) => {
-    return (
-      <Card
-        card={card}
-        url={`catalog/${section_url}/${card.url}`}
-        key={card.id}
-      />
-    );
-  });
+  console.log(list.length);
 
   return (
     <section className="section" aria-label='Раздел "Карточки"'>
       <SectionHeader caption={caption} />
-      <CardList cardList={cardList} />
+      <CardList
+        cardList={cardsToShow}
+        url={`catalog/${section_url}`}
+        handleCardClick={handleCardClick}
+      />
       <div className="section__wrap-buttons">
         {list.length > count
           ? list.length > chunkSize && (

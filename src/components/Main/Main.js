@@ -3,10 +3,8 @@ import SliderMain from '../Slider/SliderMain';
 import Section from '../Section/Section';
 import InfoCenter from '../InfoCenter/InfoCenter';
 import PromoSection from '../PromoSection/PromoSection';
-import { categorys } from '../../utils/categorys';
-import { collections } from '../../utils/collections';
 
-function Main() {
+function Main({ categorys, collections, handleCardClick }) {
   const filteredList = (caption) => {
     return collections.filter((collection) =>
       collection.category.some((value) => value === caption)
@@ -20,16 +18,19 @@ function Main() {
         caption={categorys[0].name}
         list={filteredList(categorys[0].name)}
         section_url={categorys[0].path}
+        handleCardClick={handleCardClick}
       />
       <Section
         caption={categorys[1].name}
         list={filteredList(categorys[1].name)}
         section_url={categorys[1].path}
+        handleCardClick={handleCardClick}
       />
       <Section
         caption={categorys[2].name}
         list={filteredList(categorys[2].name)}
         section_url={categorys[2].path}
+        handleCardClick={handleCardClick}
       />
       <PromoSection />
       <InfoCenter />

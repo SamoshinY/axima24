@@ -1,5 +1,8 @@
 import './App.css';
+import { useState } from 'react';
 import { Route, Routes, Outlet } from 'react-router-dom';
+import { categorys } from '../../utils/categorys';
+import { collections } from '../../utils/collections';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
@@ -17,18 +20,55 @@ import InfoPage from '../InfoPage/InfoPage';
 function App() {
   ScrollToTop();
 
+  const [selectedCard, setSelectedCard] = useState({});
+  const [selectedCatalogCard, setSelectedCatalogCard] = useState({});
+
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+  };
+
+  const handleCatalogCardClick = (card) => {
+    setSelectedCatalogCard(card);
+  };
+
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route path="/" element={<Outlet />}>
-          <Route index element={<Main />} />
+          <Route
+            index
+            element={
+              <Main
+                categorys={categorys}
+                collections={collections}
+                handleCardClick={handleCardClick}
+              />
+            }
+          />
         </Route>
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/catalog/:category" element={<CatalogSection />} />
+        <Route
+          path="/catalog"
+          element={
+            <Catalog
+              categorys={categorys}
+              handleCatalogCardClick={handleCatalogCardClick}
+            />
+          }
+        />
+        <Route
+          path="/catalog/:category"
+          element={
+            <CatalogSection
+              category={selectedCatalogCard}
+              collections={collections}
+              handleCardClick={handleCardClick}
+            />
+          }
+        />
         <Route
           path="/catalog/:category/:collection"
-          element={<CollectionPage />}
+          element={<CollectionPage collection={selectedCard} />}
         />
         <Route path="/info" element={<InfoCenter />} />
         <Route path="/info/:subsection" element={<InfoSubsection />} />
