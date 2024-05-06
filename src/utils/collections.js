@@ -33,7 +33,7 @@ import fobosint from '../images/collections/gesso/fobosint.jpg';
 import proksima from '../images/collections/gesso/proksima.jpg';
 import inter_er from '../images/collections/gesso/inter_er.jpg';
 
-export const collections = [
+export const initialCollections = [
   {
     top_photo: Inter_er_Santa_Barbara_1,
     name: 'Санта Барбара',

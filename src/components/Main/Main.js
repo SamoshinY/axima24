@@ -4,10 +4,15 @@ import Section from '../Section/Section';
 import InfoCenter from '../InfoCenter/InfoCenter';
 import PromoSection from '../PromoSection/PromoSection';
 
-function Main({ categorys, collections, handleCardClick }) {
-  const filteredList = (caption) => {
+function Main({
+  categorys,
+  collections,
+  handleCardClick,
+  handleCatalogSectionClick,
+}) {
+  const filteredList = (i) => {
     return collections.filter((collection) =>
-      collection.category.some((value) => value === caption)
+      collection.category.some((value) => value === categorys[i].name)
     );
   };
 
@@ -15,22 +20,22 @@ function Main({ categorys, collections, handleCardClick }) {
     <div className="Main">
       <SliderMain />
       <Section
-        caption={categorys[0].name}
-        list={filteredList(categorys[0].name)}
-        section_url={categorys[0].path}
+        category={categorys[0]}
+        list={filteredList(0)}
         handleCardClick={handleCardClick}
+        handleCatalogSectionClick={handleCatalogSectionClick}
       />
       <Section
-        caption={categorys[1].name}
-        list={filteredList(categorys[1].name)}
-        section_url={categorys[1].path}
+        category={categorys[1]}
+        list={filteredList(1)}
         handleCardClick={handleCardClick}
+        handleCatalogSectionClick={handleCatalogSectionClick}
       />
       <Section
-        caption={categorys[2].name}
-        list={filteredList(categorys[2].name)}
-        section_url={categorys[2].path}
+        category={categorys[2]}
+        list={filteredList(2)}
         handleCardClick={handleCardClick}
+        handleCatalogSectionClick={handleCatalogSectionClick}
       />
       <PromoSection />
       <InfoCenter />

@@ -5,18 +5,25 @@ import MoreButton from '..//MoreButton/MoreButton';
 import { usePagination } from '../../hooks/usePagination';
 import { Link } from 'react-router-dom';
 
-const Section = ({ caption, list, section_url, handleCardClick }) => {
+const Section = ({
+  category,
+  list,
+  handleCardClick,
+  handleCatalogSectionClick,
+}) => {
   const { handleShowMoreCards, cardsToShow, count, chunkSize } =
     usePagination(list);
 
-  console.log(list.length);
+  const handleToSectionClick = () => {
+    handleCatalogSectionClick(category);
+  };
 
   return (
     <section className="section" aria-label='Раздел "Карточки"'>
-      <SectionHeader caption={caption} />
+      <SectionHeader caption={category.name} />
       <CardList
         cardList={cardsToShow}
-        url={`catalog/${section_url}`}
+        url={`catalog/${category.path}`}
         handleCardClick={handleCardClick}
       />
       <div className="section__wrap-buttons">
@@ -25,7 +32,11 @@ const Section = ({ caption, list, section_url, handleCardClick }) => {
               <MoreButton handleShowMoreCards={handleShowMoreCards} />
             )
           : null}
-        <Link to={`catalog/${section_url}`} className="section__link-button">
+        <Link
+          to={`catalog/${category.path}`}
+          className="section__link-button"
+          onClick={handleToSectionClick}
+        >
           Перейти в раздел
         </Link>
       </div>

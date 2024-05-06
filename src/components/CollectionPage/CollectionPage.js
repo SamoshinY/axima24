@@ -1,12 +1,9 @@
 import './CollectionPage.css';
-import { useState } from 'react';
 import BreadcrumbsMe from '../BreadcrumbsMe/BreadcrumbsMe';
 
-const CollectionPage = ({ collection }) => {
-  const [isLiked, setisLiked] = useState(false);
-
+const CollectionPage = ({ collection, addToFavorites, isLiked }) => {
   const handleCardLike = () => {
-    setisLiked(!isLiked);
+    addToFavorites(collection, isLiked);
   };
 
   const cardLikeButtonClassName = `collection-page__info-like ${

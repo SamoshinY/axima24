@@ -1,8 +1,8 @@
-import './Catalog.css';
+import './CatalogPage.css';
 import PageHeader from '../PageHeader/PageHeader';
 import CatalogCard from '../CatalogCard/CatalogCard';
 
-const Catalog = ({ categorys, handleCatalogCardClick }) => {
+const CatalogPage = ({ categorys, handleCatalogSectionClick }) => {
   return (
     <div className="catalog" aria-label='Раздел "Каталог"'>
       <PageHeader header={'Каталог'} />
@@ -12,7 +12,7 @@ const Catalog = ({ categorys, handleCatalogCardClick }) => {
             <article className="catalog__section" key={card.id}>
               <CatalogCard
                 card={card}
-                handleCatalogCardClick={handleCatalogCardClick}
+                handleCatalogSectionClick={handleCatalogSectionClick}
               />
             </article>
           );
@@ -22,4 +22,4 @@ const Catalog = ({ categorys, handleCatalogCardClick }) => {
   );
 };
 
-export default Catalog;
+export default CatalogPage;

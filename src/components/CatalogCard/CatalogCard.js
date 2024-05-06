@@ -1,9 +1,9 @@
 import './CatalogCard.css';
 import { Link } from 'react-router-dom';
 
-const CatalogCard = ({ card, handleCatalogCardClick }) => {
+const CatalogCard = ({ card, handleCatalogSectionClick }) => {
   const handleClick = () => {
-    handleCatalogCardClick(card);
+    handleCatalogSectionClick(card);
   };
   return (
     <article className="catalog-card" aria-label="Карточка">
