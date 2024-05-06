@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   WIDTH_S,
   WIDTH_M,
@@ -20,6 +21,12 @@ export const usePagination = (collection) => {
   const [count, setCount] = useState(0);
   const [cardsToShow, setCardsToShow] = useState([]);
 
+  const location = useLocation();
+  // console.log(location.pathname);
+  const cardsPerPageMax =
+    location.pathname === '/' ? CARDS_PER_PAGE_XL : CARDS_PER_PAGE_L;
+  // console.log(chankSizeMax, CHUNK_SIZE_L);
+
   useEffect(() => {
     setCardsToShow(collection.slice(0, cardsPerPage));
     setNext(cardsPerPage);
@@ -39,7 +46,7 @@ export const usePagination = (collection) => {
     switch (true) {
       case width > WIDTH_L:
         chunkSize = CHUNK_SIZE_XL;
-        cardsPerPage = CARDS_PER_PAGE_XL;
+        cardsPerPage = cardsPerPageMax;
         break;
       case width > WIDTH_M && width <= WIDTH_L:
         chunkSize = CHUNK_SIZE_L;

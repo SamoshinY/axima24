@@ -1,39 +1,53 @@
 import './CatalogSection.css';
-import { useState } from 'react';
-import PageHeader from '../PageHeader/PageHeader';
+import SectionHeader from '../SectionHeader/SectionHeader';
 import CardList from '../CardList/CardList';
-import Filter from '../Filter/Filter';
+import MoreButton from '../MoreButton/MoreButton';
+import { usePagination } from '../../hooks/usePagination';
+import { Link, useLocation } from 'react-router-dom';
 
-const CatalogSection = ({ collections, category, handleCardClick }) => {
-  const sectionList = collections.filter((collection) =>
-    collection.category.some((value) => value === category.name)
-  );
+const CatalogSection = ({
+  category,
+  list,
+  handleCardClick,
+  handleCatalogSectionClick,
+}) => {
+  const location = useLocation();
 
-  const [sizeFilter, setSizeFilter] = useState(sectionList);
+  const { handleShowMoreCards, cardsToShow, count, chunkSize } =
+    usePagination(list);
 
-  const handleFilterButtonClick = (event) => {
-    const filteredSizeList = sectionList.filter(
-      (item) =>
-        item?.size === event.target.name ||
-        'Все размеры' === event.target.name ||
-        'Все' === event.target.name
-    );
-    setSizeFilter(filteredSizeList);
+  const handleToSectionClick = () => {
+    handleCatalogSectionClick(category);
   };
 
   return (
-    <div className="catalog-section" aria-label="Раздел каталога">
-      <PageHeader header={category.name} />
-      <Filter
-        initialList={sectionList}
-        handleButtonClick={handleFilterButtonClick}
-      />
+    <section
+      className={location.pathname === '/' ? 'section' : 'section section_dark'}
+      aria-label='Раздел "Карточки"'
+    >
+      {location.pathname === '/' && <SectionHeader caption={category.name} />}
       <CardList
-        cardList={sizeFilter}
+        cardList={cardsToShow}
         url={`catalog/${category.path}`}
         handleCardClick={handleCardClick}
       />
-    </div>
+      <div className="section__wrap-buttons">
+        {list.length > count
+          ? list.length > chunkSize && (
+              <MoreButton handleShowMoreCards={handleShowMoreCards} />
+            )
+          : null}
+        {location.pathname === '/' && (
+          <Link
+            to={`catalog/${category.path}`}
+            className="section__link-button"
+            onClick={handleToSectionClick}
+          >
+            Перейти в раздел
+          </Link>
+        )}
+      </div>
+    </section>
   );
 };
 

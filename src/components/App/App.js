@@ -10,7 +10,7 @@ import AboutUs from '../AboutUs/AboutUs';
 import Contacts from '../Contacts/Contacts';
 import CatalogPage from '../CatalogPage/CatalogPage';
 import NotFound from '../NotFound/NotFound';
-import CatalogSection from '../CatalogSection/CatalogSection';
+import CatalogSectionPage from '../CatalogSectionPage/CatalogSectionPage';
 import CollectionPage from '../CollectionPage/CollectionPage';
 import ScrollToTop from '../../hooks/scrollToTop';
 import InfoCenter from '../InfoCenter/InfoCenter';
@@ -82,7 +82,7 @@ function App() {
         <Route
           path="/catalog/:category"
           element={
-            <CatalogSection
+            <CatalogSectionPage
               category={selectedCatalogSection}
               collections={initialCollections}
               handleCardClick={handleCardClick}

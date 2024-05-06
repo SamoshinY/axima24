@@ -29,7 +29,7 @@ const CHUNK_SIZE_L = 3;
 const CHUNK_SIZE_XL = 3;
 const CARDS_PER_PAGE_S = 5;
 const CARDS_PER_PAGE_M = 8;
-const CARDS_PER_PAGE_L = 12;
+const CARDS_PER_PAGE_L = 6;
 const CARDS_PER_PAGE_XL = 3;
 
 const SHORT_DURATION_LIMIT = 40;
