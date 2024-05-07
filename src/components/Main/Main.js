@@ -5,35 +5,29 @@ import InfoCenter from '../InfoCenter/InfoCenter';
 import PromoSection from '../PromoSection/PromoSection';
 
 function Main({
-  categorys,
-  collections,
+  category,
+  catalogSectionList,
   handleCardClick,
   handleCatalogSectionClick,
 }) {
-  const filteredList = (i) => {
-    return collections.filter((collection) =>
-      collection.category.some((value) => value === categorys[i].name)
-    );
-  };
-
   return (
     <div className="Main">
       <SliderMain />
       <CatalogSection
-        category={categorys[0]}
-        list={filteredList(0)}
+        category={category(0)}
+        list={catalogSectionList(category(0))}
         handleCardClick={handleCardClick}
         handleCatalogSectionClick={handleCatalogSectionClick}
       />
       <CatalogSection
-        category={categorys[1]}
-        list={filteredList(1)}
+        category={category(1)}
+        list={catalogSectionList(category(1))}
         handleCardClick={handleCardClick}
         handleCatalogSectionClick={handleCatalogSectionClick}
       />
       <CatalogSection
-        category={categorys[2]}
-        list={filteredList(2)}
+        category={category(2)}
+        list={catalogSectionList(category(2))}
         handleCardClick={handleCardClick}
         handleCatalogSectionClick={handleCatalogSectionClick}
       />

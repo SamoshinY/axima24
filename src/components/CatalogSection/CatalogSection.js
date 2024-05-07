@@ -2,8 +2,10 @@ import './CatalogSection.css';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import CardList from '../CardList/CardList';
 import MoreButton from '../MoreButton/MoreButton';
+import Filter from '../Filter/Filter';
 import { usePagination } from '../../hooks/usePagination';
 import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
 const CatalogSection = ({
   category,
@@ -13,12 +15,20 @@ const CatalogSection = ({
 }) => {
   const location = useLocation();
 
-  const { handleShowMoreCards, cardsToShow, count, chunkSize } =
-    usePagination(list);
+  const [sizeFilter, setSizeFilter] = useState(list);
 
-  const handleToSectionClick = () => {
-    handleCatalogSectionClick(category);
+  const handleFilterButtonClick = (event) => {
+    const filteredSizeList = list.filter(
+      (item) =>
+        item?.size === event.target.name ||
+        'Все размеры' === event.target.name ||
+        'Все' === event.target.name
+    );
+    setSizeFilter(filteredSizeList);
   };
+
+  const { handleShowMoreCards, cardsToShow, count, chunkSize } =
+    usePagination(sizeFilter);
 
   return (
     <section
@@ -26,14 +36,20 @@ const CatalogSection = ({
       aria-label='Раздел "Карточки"'
     >
       {location.pathname === '/' && <SectionHeader caption={category.name} />}
+      {location.pathname !== '/' && (
+        <Filter
+          initialList={list}
+          handleButtonClick={handleFilterButtonClick}
+        />
+      )}
       <CardList
         cardList={cardsToShow}
         url={`catalog/${category.path}`}
         handleCardClick={handleCardClick}
       />
       <div className="section__wrap-buttons">
-        {list.length > count
-          ? list.length > chunkSize && (
+        {sizeFilter.length > count
+          ? sizeFilter.length > chunkSize && (
               <MoreButton handleShowMoreCards={handleShowMoreCards} />
             )
           : null}
@@ -41,7 +57,9 @@ const CatalogSection = ({
           <Link
             to={`catalog/${category.path}`}
             className="section__link-button"
-            onClick={handleToSectionClick}
+            onClick={() => {
+              handleCatalogSectionClick(category);
+            }}
           >
             Перейти в раздел
           </Link>

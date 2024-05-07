@@ -27,6 +27,14 @@ function App() {
   const initialFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
   const [favorites, setFavorites] = useState(initialFavorites);
 
+  const category = (i) => categorys[i];
+
+  const catalogSectionList = (category) => {
+    return initialCollections.filter((collection) =>
+      collection.category.some((value) => value === category.name)
+    );
+  };
+
   const handleCardClick = (card) => {
     setSelectedCard(card);
   };
@@ -62,8 +70,8 @@ function App() {
             index
             element={
               <Main
-                categorys={categorys}
-                collections={initialCollections}
+                category={category}
+                catalogSectionList={catalogSectionList}
                 handleCardClick={handleCardClick}
                 handleCatalogSectionClick={handleCatalogSectionClick}
               />
@@ -84,7 +92,7 @@ function App() {
           element={
             <CatalogSectionPage
               category={selectedCatalogSection}
-              collections={initialCollections}
+              list={catalogSectionList(selectedCatalogSection)}
               handleCardClick={handleCardClick}
             />
           }
