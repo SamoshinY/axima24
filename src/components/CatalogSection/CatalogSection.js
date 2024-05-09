@@ -1,11 +1,12 @@
 import './CatalogSection.css';
+import PageHeader from '../PageHeader/PageHeader';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import CardList from '../CardList/CardList';
 import MoreButton from '../MoreButton/MoreButton';
-import Filter from '../Filter/Filter';
+import FilterButtonGroup from '../FilterButtonGroup/FilterButtonGroup';
 import { usePagination } from '../../hooks/usePagination';
+import { useFilter } from '../../hooks/useFilter';
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
 
 const CatalogSection = ({
   category,
@@ -14,58 +15,55 @@ const CatalogSection = ({
   handleCatalogSectionClick,
 }) => {
   const location = useLocation();
+  const onMainPage = location.pathname === '/';
 
-  const [sizeFilter, setSizeFilter] = useState(list);
-
-  const handleFilterButtonClick = (event) => {
-    const filteredSizeList = list.filter(
-      (item) =>
-        item?.size === event.target.name ||
-        'Все размеры' === event.target.name ||
-        'Все' === event.target.name
-    );
-    setSizeFilter(filteredSizeList);
-  };
+  const { filteredList, buttons, handleFilterButtonClick } = useFilter(
+    list,
+    'size'
+  );
 
   const { handleShowMoreCards, cardsToShow, count, chunkSize } =
-    usePagination(sizeFilter);
+    usePagination(filteredList);
 
   return (
-    <section
-      className={location.pathname === '/' ? 'section' : 'section section_dark'}
-      aria-label='Раздел "Карточки"'
-    >
-      {location.pathname === '/' && <SectionHeader caption={category.name} />}
-      {location.pathname !== '/' && (
-        <Filter
-          initialList={list}
-          handleButtonClick={handleFilterButtonClick}
-        />
-      )}
-      <CardList
-        cardList={cardsToShow}
-        url={`catalog/${category.path}`}
-        handleCardClick={handleCardClick}
-      />
-      <div className="section__wrap-buttons">
-        {sizeFilter.length > count
-          ? sizeFilter.length > chunkSize && (
-              <MoreButton handleShowMoreCards={handleShowMoreCards} />
-            )
-          : null}
-        {location.pathname === '/' && (
-          <Link
-            to={`catalog/${category.path}`}
-            className="section__link-button"
-            onClick={() => {
-              handleCatalogSectionClick(category);
-            }}
-          >
-            Перейти в раздел
-          </Link>
+    <>
+      {!onMainPage && <PageHeader header={category.name} />}
+      <section
+        className={onMainPage ? 'section' : 'section section_dark'}
+        aria-label='Раздел "Карточки"'
+      >
+        {onMainPage && <SectionHeader caption={category.name} />}
+        {!onMainPage && (
+          <FilterButtonGroup
+            buttons={buttons}
+            handleFilterButtonClick={handleFilterButtonClick}
+          />
         )}
-      </div>
-    </section>
+        <CardList
+          cardList={cardsToShow}
+          url={`catalog/${category.path}`}
+          handleCardClick={handleCardClick}
+        />
+        <div className="section__wrap-buttons">
+          {filteredList.length > count
+            ? filteredList.length > chunkSize && (
+                <MoreButton handleShowMoreCards={handleShowMoreCards} />
+              )
+            : null}
+          {onMainPage && (
+            <Link
+              to={`catalog/${category.path}`}
+              className="section__link-button"
+              onClick={() => {
+                handleCatalogSectionClick(category);
+              }}
+            >
+              Перейти в раздел
+            </Link>
+          )}
+        </div>
+      </section>
+    </>
   );
 };
 

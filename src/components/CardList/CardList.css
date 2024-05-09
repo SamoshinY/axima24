@@ -1,15 +1,5 @@
 .card-list {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-}
-
-.card-list__content {
-  box-sizing: border-box;
   padding: 0 10px;
   width: 100%;
   display: grid;
@@ -21,7 +11,7 @@
 }
 
 @media screen and (max-width: 1080px) {
-  .card-list__content {
+  .card-list {
     margin-top: 70px;
     grid-template-columns: repeat(3, 1fr);
     gap: 34px 24px;
@@ -29,7 +19,7 @@
 }
 
 @media screen and (max-width: 830px) {
-  .card-list__content {
+  .card-list {
     padding: 0 30px;
     grid-template-columns: repeat(2, 1fr);
     gap: 36px 30px;
@@ -37,7 +27,7 @@
 }
 
 @media screen and (max-width: 520px) {
-  .card-list__content {
+  .card-list {
     margin-top: 40px;
     padding: 0 10px;
     grid-template-columns: 1fr;

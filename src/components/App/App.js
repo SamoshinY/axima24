@@ -10,7 +10,7 @@ import AboutUs from '../AboutUs/AboutUs';
 import Contacts from '../Contacts/Contacts';
 import CatalogPage from '../CatalogPage/CatalogPage';
 import NotFound from '../NotFound/NotFound';
-import CatalogSectionPage from '../CatalogSectionPage/CatalogSectionPage';
+import CatalogSection from '../CatalogSection/CatalogSection';
 import CollectionPage from '../CollectionPage/CollectionPage';
 import ScrollToTop from '../../hooks/scrollToTop';
 import InfoCenter from '../InfoCenter/InfoCenter';
@@ -21,8 +21,8 @@ import FavoritesPage from '../FavoritesPage/FavoritesPage';
 function App() {
   ScrollToTop();
 
-  // const [collections, setCollections] = useState([]);
   const [selectedCard, setSelectedCard] = useState({});
+  const [selectedCardUrl, setSelectedCardUrl] = useState('');
   const [selectedCatalogSection, setSelectedCatalogSection] = useState([]);
   const initialFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
   const [favorites, setFavorites] = useState(initialFavorites);
@@ -34,36 +34,47 @@ function App() {
       collection.category.some((value) => value === category.name)
     );
   };
-
-  const handleCardClick = (card) => {
+  const handleCardClick = (card, url) => {
     setSelectedCard(card);
+    setSelectedCardUrl(url);
   };
 
   const handleCatalogSectionClick = (section) => {
     setSelectedCatalogSection(section);
   };
 
-  const addToFavorites = (collection) => {
-    setFavorites([...favorites, collection]);
+  // Избранное
+
+  const isLiked = favorites.length
+    ? Boolean(
+        favorites?.find(({ name }) => {
+          return name === selectedCard.name;
+        })
+      )
+    : false;
+
+  const handleLikeClick = (collection, isLiked) => {
+    if (!isLiked) {
+      setFavorites([...favorites, collection]);
+    } else {
+      const savedCard = favorites.length
+        ? favorites?.find(({ name }) => name === collection.name)
+        : null;
+      setFavorites((state) => state.filter((c) => c.name !== savedCard.name));
+    }
+    // localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
-  // const addToFavorites = (collection, isLiked) => {
-  //   if (!isLiked) {
-  //     setFavorites([...favorites, collection]);
-  //   } else {
-  //     const savedCard = favorites.length
-  //       ? favorites?.find(({ cardId }) => cardId === collection.name)
-  //       : null;
-  //     setFavorites((state) => state.filter((c) => c.name !== savedCard.name));
-  //     localStorage.setItem('favorites', JSON.stringify(favorites));
-  //   }
-  // };
-
-  // console.log(collections);
+  // Строка url, которая передается при клике на карточку со страницы "Избранное"
+  const fromFavoritesUrl = selectedCardUrl
+    .split('/')
+    .filter((x) => x)
+    .slice(0, -1)
+    .join('/');
 
   return (
     <div className="App">
-      <Header />
+      <Header favorites={favorites} />
       <Routes>
         <Route path="/" element={<Outlet />}>
           <Route
@@ -90,7 +101,7 @@ function App() {
         <Route
           path="/catalog/:category"
           element={
-            <CatalogSectionPage
+            <CatalogSection
               category={selectedCatalogSection}
               list={catalogSectionList(selectedCatalogSection)}
               handleCardClick={handleCardClick}
@@ -102,7 +113,8 @@ function App() {
           element={
             <CollectionPage
               collection={selectedCard}
-              addToFavorites={addToFavorites}
+              handleLikeClick={handleLikeClick}
+              isLiked={isLiked}
             />
           }
         />
@@ -115,8 +127,8 @@ function App() {
           path="/favorites"
           element={
             <FavoritesPage
-              cardList={favorites}
-              // url={`catalog/${section_url}`}
+              favorites={favorites}
+              url={`${fromFavoritesUrl}`}
               handleCardClick={handleCardClick}
             />
           }

@@ -1,9 +1,9 @@
 import './CollectionPage.css';
 import BreadcrumbsMe from '../BreadcrumbsMe/BreadcrumbsMe';
 
-const CollectionPage = ({ collection, addToFavorites, isLiked }) => {
+const CollectionPage = ({ collection, isLiked, handleLikeClick }) => {
   const handleCardLike = () => {
-    addToFavorites(collection, isLiked);
+    handleLikeClick(collection, isLiked);
   };
 
   const cardLikeButtonClassName = `collection-page__info-like ${

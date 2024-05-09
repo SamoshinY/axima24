@@ -1,16 +1,16 @@
 import './FilterButtonGroup.css';
 import { useState } from 'react';
 
-const FilterButtonGroup = ({ buttons, handleButtonClick }) => {
+const FilterButtonGroup = ({ buttons, handleFilterButtonClick }) => {
   const [clickedId, setClickedId] = useState(0);
 
   const handleClick = (event, id) => {
     setClickedId(id);
-    handleButtonClick(event);
+    handleFilterButtonClick(event);
   };
 
   return (
-    <>
+    <nav className="filter__buttons">
       {buttons.map((buttonLabel, i) => (
         <button
           key={i}
@@ -23,7 +23,7 @@ const FilterButtonGroup = ({ buttons, handleButtonClick }) => {
           {buttonLabel}
         </button>
       ))}
-    </>
+    </nav>
   );
 };
 

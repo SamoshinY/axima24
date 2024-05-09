@@ -1,3 +1,10 @@
+.filter__buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-self: start;
+  margin: 0 145px;
+}
+
 .filter__button {
   width: auto;
   height: 36px;

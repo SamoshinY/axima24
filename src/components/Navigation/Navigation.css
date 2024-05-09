@@ -199,9 +199,9 @@
 }
 
 @media screen and (max-width: 520px) {
-  .navigation__favorites-link {
-    /* margin-bottom: 48px; */
-  }
+  /* .navigation__favorites-link { */
+  /* margin-bottom: 48px; */
+  /* } */
 }
 
 .navigation__favorites-link:hover {
@@ -209,6 +209,7 @@
 }
 
 .navigation__favorites-icon-wrap {
+  position: relative;
   width: 30px;
   height: 30px;
   border-radius: 4px;
@@ -226,6 +227,20 @@
   margin: 0 0 5px;
   stroke: #fff;
   fill: #fff;
+}
+
+.navigation__favorites-counter {
+  position: absolute;
+  top: -15px;
+  right: -7px;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background-color: red;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
 }
 
 .navigation__favorites-label {

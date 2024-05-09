@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Card = ({ card, url, handleCardClick }) => {
   const handleClick = () => {
-    handleCardClick(card);
+    handleCardClick(card, url);
   };
 
   return (

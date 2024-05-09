@@ -1,8 +1,8 @@
 import './Navigation.css';
-import favorites from '../../images/favorite_icon.svg';
+import favoritesIcon from '../../images/favorite_icon.svg';
 import { NavLink } from 'react-router-dom';
 
-const Navigation = ({ isOpen, handleClick }) => {
+const Navigation = ({ isOpen, handleClick, favorites }) => {
   return (
     <section
       className={isOpen ? 'navigation navigation_active' : 'navigation'}
@@ -66,8 +66,13 @@ const Navigation = ({ isOpen, handleClick }) => {
             onClick={handleClick}
           >
             <div className="navigation__favorites-icon-wrap">
+              {Boolean(favorites.length) && (
+                <div className="navigation__favorites-counter">
+                  {favorites.length}
+                </div>
+              )}
               <img
-                src={favorites}
+                src={favoritesIcon}
                 className="navigation__favorites-icon"
                 alt="Войти в профиль"
               ></img>
