@@ -4,6 +4,7 @@
   width: 100%;
   height: 35vw;
   box-sizing: border-box;
+  /* display: flex; */
 }
 
 .slider-container:hover .slick-arrow {
@@ -96,6 +97,35 @@
   height: 100%;
   object-fit: cover;
   overflow: hidden;
+}
+
+.slide_img1 {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.7),
+      rgba(0, 0, 0, 0.4)
+    ),
+    url(../../images/assets/c5337f3d4eeb6683a6bfb69ad60aeffd_2880x1184x1.jpg);
+  background-size: cover;
+}
+
+.slide__logo-container {
+  /* z-index: 100; */
+  margin: auto;
+  margin-top: 15%;
+  align-content: center;
+  width: 45%;
+  transition: all 1s ease;
+}
+
+.slide__logo {
+  align-self: center;
+}
+
+.slide__logo-text {
+  font-size: 28px;
+  line-height: 32px;
+  color: #fff;
+  /* color: #e8e6e3; */
 }
 
 .slick-dots {

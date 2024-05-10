@@ -10,6 +10,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const CatalogSection = ({
   category,
+  // url,
   list,
   handleCardClick,
   handleCatalogSectionClick,
@@ -42,6 +43,7 @@ const CatalogSection = ({
         <CardList
           cardList={cardsToShow}
           url={`catalog/${category.path}`}
+          // url={url}
           handleCardClick={handleCardClick}
         />
         <div className="section__wrap-buttons">

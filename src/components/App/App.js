@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes, Outlet } from 'react-router-dom';
 import { categorys } from '../../utils/categorys';
 import { initialCollections } from '../../utils/collections';
@@ -21,10 +21,25 @@ import FavoritesPage from '../FavoritesPage/FavoritesPage';
 function App() {
   ScrollToTop();
 
-  const [selectedCard, setSelectedCard] = useState({});
-  const [selectedCardUrl, setSelectedCardUrl] = useState('');
-  const [selectedCatalogSection, setSelectedCatalogSection] = useState([]);
+  const initialSelectedCard =
+    JSON.parse(localStorage.getItem('selectedCard')) || {};
+  const initialSelectedCardUrl =
+    JSON.parse(localStorage.getItem('selectedCardUrl')) || '';
+
+  const initialSelectedCatalogSection =
+    JSON.parse(localStorage.getItem('selectedCatalogSection')) || [];
+
   const initialFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+  const [selectedCard, setSelectedCard] = useState(initialSelectedCard);
+
+  const [selectedCardUrl, setSelectedCardUrl] = useState(
+    initialSelectedCardUrl
+  );
+  const [selectedCatalogSection, setSelectedCatalogSection] = useState(
+    initialSelectedCatalogSection
+  );
+
   const [favorites, setFavorites] = useState(initialFavorites);
 
   const category = (i) => categorys[i];
@@ -39,11 +54,30 @@ function App() {
     setSelectedCardUrl(url);
   };
 
+  useEffect(() => {
+    localStorage.setItem('selectedCard', JSON.stringify(selectedCard));
+  }, [selectedCard]);
+
+  useEffect(() => {
+    localStorage.setItem('selectedCardUrl', JSON.stringify(selectedCardUrl));
+  }, [selectedCardUrl]);
+
   const handleCatalogSectionClick = (section) => {
     setSelectedCatalogSection(section);
   };
 
+  useEffect(() => {
+    localStorage.setItem(
+      'selectedCatalogSection',
+      JSON.stringify(selectedCatalogSection)
+    );
+  }, [selectedCatalogSection]);
+
   // Избранное
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }, [favorites]);
 
   const isLiked = favorites.length
     ? Boolean(
@@ -65,7 +99,7 @@ function App() {
     // localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
-  // Строка url, которая передается при клике на карточку со страницы "Избранное"
+  // Строка url, которая передается при клике на карточку со страницы "Избранное" (пока так)
   const fromFavoritesUrl = selectedCardUrl
     .split('/')
     .filter((x) => x)
@@ -105,6 +139,7 @@ function App() {
               category={selectedCatalogSection}
               list={catalogSectionList(selectedCatalogSection)}
               handleCardClick={handleCardClick}
+              url={selectedCardUrl}
             />
           }
         />

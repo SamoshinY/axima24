@@ -9,6 +9,7 @@ const CardList = ({ cardList, url, handleCardClick }) => {
           <Card
             card={card}
             url={`/${url}/${card.url}`}
+            // url={url}
             key={card.id}
             handleCardClick={handleCardClick}
           />
