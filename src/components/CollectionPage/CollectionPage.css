@@ -39,7 +39,6 @@
   position: absolute;
   bottom: -30px;
   right: -50px;
-  background-image: url('../../images/fon.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -50,10 +49,12 @@
   height: 200px;
 }
 .collection-page__info:after {
+  background-image: url('../../images/fon_w.svg');
   right: 200px;
 }
 
 .collection-page__info:before {
+  background-image: url('../../images/fon.svg');
   right: -80px;
 }
 

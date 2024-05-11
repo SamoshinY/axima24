@@ -96,7 +96,6 @@ function App() {
         : null;
       setFavorites((state) => state.filter((c) => c.name !== savedCard.name));
     }
-    // localStorage.setItem('favorites', JSON.stringify(favorites));
   };
 
   // Строка url, которая передается при клике на карточку со страницы "Избранное" (пока так)
@@ -105,6 +104,8 @@ function App() {
     .filter((x) => x)
     .slice(0, -1)
     .join('/');
+
+  // console.log(fromFavoritesUrl);
 
   return (
     <div className="App">
