@@ -10,13 +10,13 @@ import AboutUs from '../AboutUs/AboutUs';
 import Contacts from '../Contacts/Contacts';
 import CatalogPage from '../CatalogPage/CatalogPage';
 import NotFound from '../NotFound/NotFound';
-import CatalogSection from '../CatalogSection/CatalogSection';
 import CollectionPage from '../CollectionPage/CollectionPage';
 import ScrollToTop from '../../hooks/scrollToTop';
 import InfoCenter from '../InfoCenter/InfoCenter';
 import InfoSubsection from '../InfoSubsection/InfoSubsection';
 import InfoPage from '../InfoPage/InfoPage';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
+import CatalogSectionBox from '../CatalogSectionBox/CatalogSectionBox';
 
 function App() {
   ScrollToTop();
@@ -25,30 +25,19 @@ function App() {
     JSON.parse(localStorage.getItem('selectedCard')) || {};
   const initialSelectedCardUrl =
     JSON.parse(localStorage.getItem('selectedCardUrl')) || '';
-
   const initialSelectedCatalogSection =
     JSON.parse(localStorage.getItem('selectedCatalogSection')) || [];
-
   const initialFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
   const [selectedCard, setSelectedCard] = useState(initialSelectedCard);
-
   const [selectedCardUrl, setSelectedCardUrl] = useState(
     initialSelectedCardUrl
   );
   const [selectedCatalogSection, setSelectedCatalogSection] = useState(
     initialSelectedCatalogSection
   );
-
   const [favorites, setFavorites] = useState(initialFavorites);
 
-  const category = (i) => categorys[i];
-
-  const catalogSectionList = (category) => {
-    return initialCollections.filter((collection) =>
-      collection.category.some((value) => value === category.name)
-    );
-  };
   const handleCardClick = (card, url) => {
     setSelectedCard(card);
     setSelectedCardUrl(url);
@@ -72,8 +61,6 @@ function App() {
       JSON.stringify(selectedCatalogSection)
     );
   }, [selectedCatalogSection]);
-
-  // Избранное
 
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -105,7 +92,29 @@ function App() {
     .slice(0, -1)
     .join('/');
 
-  // console.log(fromFavoritesUrl);
+  const getCategorizedList = (initialList) =>
+    Object.values(
+      initialList.reduce((acc, value) => {
+        const keys = value.categorys;
+        keys.map((key) => {
+          const newValue = { ...value };
+          newValue.section = key;
+          delete newValue.categorys;
+          if (!acc[key.name]) return (acc[key.name] = [newValue]);
+          else return acc[key.name].push(newValue);
+        });
+
+        return acc;
+      }, {})
+    );
+
+  const collections = getCategorizedList(initialCollections);
+
+  const getCatalogSectionList = (category) => {
+    return collections.filter((list) => {
+      return list.find((i) => i.section).section.name === category.name;
+    });
+  };
 
   return (
     <div className="App">
@@ -116,8 +125,7 @@ function App() {
             index
             element={
               <Main
-                category={category}
-                catalogSectionList={catalogSectionList}
+                categorizedList={collections}
                 handleCardClick={handleCardClick}
                 handleCatalogSectionClick={handleCatalogSectionClick}
               />
@@ -136,11 +144,10 @@ function App() {
         <Route
           path="/catalog/:category"
           element={
-            <CatalogSection
-              category={selectedCatalogSection}
-              list={catalogSectionList(selectedCatalogSection)}
+            <CatalogSectionBox
+              list={getCatalogSectionList(selectedCatalogSection)}
               handleCardClick={handleCardClick}
-              url={selectedCardUrl}
+              handleCatalogSectionClick={handleCatalogSectionClick}
             />
           }
         />
@@ -166,6 +173,7 @@ function App() {
               favorites={favorites}
               url={`${fromFavoritesUrl}`}
               handleCardClick={handleCardClick}
+              handleCatalogSectionClick={handleCatalogSectionClick}
             />
           }
         />

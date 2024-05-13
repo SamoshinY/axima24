@@ -1,36 +1,28 @@
 import './Main.css';
 import SliderMain from '../Slider/SliderMain';
-import CatalogSection from '../CatalogSection/CatalogSection';
+import CatalogSectionBox from '../CatalogSectionBox/CatalogSectionBox';
 import InfoCenter from '../InfoCenter/InfoCenter';
 import PromoSection from '../PromoSection/PromoSection';
 
-function Main({
-  category,
-  catalogSectionList,
-  handleCardClick,
-  handleCatalogSectionClick,
-}) {
+function Main({ categorizedList, handleCardClick, handleCatalogSectionClick }) {
+  const selectedCategorysList = categorizedList.filter((item) =>
+    item.some(
+      (element) =>
+        element.section.name === 'Керамическая плитка AXIMA' ||
+        element.section.name === 'Керамогранит AXIMA' ||
+        element.section.name === 'Напольная плитка AXIMA'
+    )
+  );
+
   return (
     <div className="Main">
       <SliderMain />
-      <CatalogSection
-        category={category(0)}
-        list={catalogSectionList(category(0))}
+      <CatalogSectionBox
+        list={selectedCategorysList}
         handleCardClick={handleCardClick}
         handleCatalogSectionClick={handleCatalogSectionClick}
       />
-      <CatalogSection
-        category={category(1)}
-        list={catalogSectionList(category(1))}
-        handleCardClick={handleCardClick}
-        handleCatalogSectionClick={handleCatalogSectionClick}
-      />
-      <CatalogSection
-        category={category(2)}
-        list={catalogSectionList(category(2))}
-        handleCardClick={handleCardClick}
-        handleCatalogSectionClick={handleCatalogSectionClick}
-      />
+
       <PromoSection />
       <InfoCenter />
     </div>

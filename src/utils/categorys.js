@@ -8,31 +8,31 @@ export const categorys = [
   {
     link: ceramic,
     name: 'Керамическая плитка AXIMA',
-    id: '001',
+    id: '0001',
     path: 'ceramic',
   },
   {
     link: granit,
     name: 'Керамогранит AXIMA',
-    id: '002',
+    id: '0002',
     path: 'porcelain-tile',
   },
   {
     link: floor,
     name: 'Напольная плитка AXIMA',
-    id: '003',
+    id: '0003',
     path: 'floor',
   },
   {
     link: gesso,
     name: 'Санфаянс GESSO',
-    id: '001',
+    id: '0004',
     path: 'gesso',
   },
   {
     link: sale,
     name: 'Распродажа',
-    id: '002',
+    id: '0005',
     path: 'sale',
   },
 ];

@@ -185,10 +185,10 @@ function AboutUs({ header }) {
             className="about__video-iframe"
             src="https://www.youtube.com/embed/-66h_wxSWls?si=dsZkJxrTI7IN0iVD"
             title="YouTube video player"
-            frameborder="0"
+            // frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
+            // referrerpolicy="strict-origin-when-cross-origin"
+            // allowfullscreen
           ></iframe>
         </div>
       </section>

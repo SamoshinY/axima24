@@ -10,13 +10,15 @@ import { Link, useLocation } from 'react-router-dom';
 
 const CatalogSection = ({
   category,
-  // url,
   list,
   handleCardClick,
   handleCatalogSectionClick,
 }) => {
   const location = useLocation();
   const onMainPage = location.pathname === '/';
+  const onFavoritesPage = location.pathname === '/favorites';
+
+  // console.log(onFavoritesPage);
 
   const { filteredList, buttons, handleFilterButtonClick } = useFilter(
     list,
@@ -28,13 +30,19 @@ const CatalogSection = ({
 
   return (
     <>
-      {!onMainPage && <PageHeader header={category.name} />}
+      {!(onMainPage || onFavoritesPage) && (
+        <PageHeader header={category.name} />
+      )}
       <section
-        className={onMainPage ? 'section' : 'section section_dark'}
+        className={
+          onMainPage || onFavoritesPage ? 'section' : 'section section_dark'
+        }
         aria-label='Раздел "Карточки"'
       >
-        {onMainPage && <SectionHeader caption={category.name} />}
-        {!onMainPage && (
+        {(onMainPage || onFavoritesPage) && (
+          <SectionHeader caption={category.name} />
+        )}
+        {!(onMainPage || onFavoritesPage) && (
           <FilterButtonGroup
             buttons={buttons}
             handleFilterButtonClick={handleFilterButtonClick}
@@ -43,7 +51,6 @@ const CatalogSection = ({
         <CardList
           cardList={cardsToShow}
           url={`catalog/${category.path}`}
-          // url={url}
           handleCardClick={handleCardClick}
         />
         <div className="section__wrap-buttons">

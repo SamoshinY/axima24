@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import getUniqueValues from '../utils/getUniqueValues';
 
 export const useFilter = (list, option) => {
   const [filteredList, setFilteredList] = useState(list);
@@ -14,16 +15,9 @@ export const useFilter = (list, option) => {
     setFilteredList(filteredSizeList);
   };
 
-  const filterOptions = (option) => {
-    const options = list
-      .filter((item) => item[option])
-      .map((item) => item[option]);
-    return [...new Set(options)];
-  };
+  const options = getUniqueValues(list, option);
 
-  const options = filterOptions(option);
-
-  const allButton = list.some((o) => o.category.toString() === 'Санфаянс GESSO')
+  const allButton = list.some((item) => item.section.name === 'Санфаянс GESSO')
     ? 'Все'
     : 'Все размеры';
 

@@ -81,7 +81,6 @@
   position: absolute;
   bottom: -30px;
   right: -50px;
-  background-image: url('../../images/fon.svg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -92,9 +91,11 @@
   height: 200px;
 }
 .promo:after {
+  background-image: url('../../images/fon_w.svg');
   right: 200px;
 }
 
 .promo:before {
+  background-image: url('../../images/fon.svg');
   right: -80px;
 }

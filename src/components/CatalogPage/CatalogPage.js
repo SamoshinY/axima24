@@ -8,9 +8,11 @@ const CatalogPage = ({ categorys, handleCatalogSectionClick }) => {
       <PageHeader header={'Каталог'} />
       <section className="catalog__content" aria-label="Карточки">
         {categorys.map((card) => {
+          // console.log(card);
           return (
-            <article className="catalog__section" key={card.id}>
+            <article className="catalog__section">
               <CatalogCard
+                key={card.id}
                 card={card}
                 handleCatalogSectionClick={handleCatalogSectionClick}
               />

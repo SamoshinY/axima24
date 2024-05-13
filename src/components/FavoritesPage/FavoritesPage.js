@@ -1,18 +1,28 @@
 import './FavoritesPage.css';
-import PageHeader from '../PageHeader/PageHeader';
-import CardList from '../CardList/CardList';
+import CatalogSectionBox from '../CatalogSectionBox/CatalogSectionBox';
 
-const FavoritesPage = ({ favorites, url, handleCardClick }) => {
+const FavoritesPage = ({
+  favorites,
+  url,
+  handleCardClick,
+  handleCatalogSectionClick,
+}) => {
+  const categorizedList = Object.values(
+    favorites.reduce((acc, value) => {
+      const key = value.section.name;
+      if (!acc[key]) acc[key] = [value];
+      else acc[key].push(value);
+      return acc;
+    }, {})
+  );
+
   return (
     <div className="favorites" aria-label='Страница "Избранное"'>
-      <PageHeader header={'Избранное'} />
-      <section className="favorites__content" aria-label="Карточки">
-        <CardList
-          cardList={favorites}
-          url={url}
-          handleCardClick={handleCardClick}
-        />
-      </section>
+      <CatalogSectionBox
+        list={categorizedList}
+        handleCardClick={handleCardClick}
+        handleCatalogSectionClick={handleCatalogSectionClick}
+      />
     </div>
   );
 };
