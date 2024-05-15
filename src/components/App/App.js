@@ -74,14 +74,18 @@ function App() {
       )
     : false;
 
-  const handleLikeClick = (collection, isLiked) => {
+  const unfavoritesClick = (card) => {
+    const savedCard = favorites.length
+      ? favorites?.find(({ name }) => name === card.name)
+      : null;
+    setFavorites((state) => state.filter((c) => c.name !== savedCard.name));
+  };
+
+  const handleLikeClick = (card, isLiked) => {
     if (!isLiked) {
-      setFavorites([...favorites, collection]);
+      setFavorites([...favorites, card]);
     } else {
-      const savedCard = favorites.length
-        ? favorites?.find(({ name }) => name === collection.name)
-        : null;
-      setFavorites((state) => state.filter((c) => c.name !== savedCard.name));
+      unfavoritesClick(card);
     }
   };
 
@@ -92,29 +96,18 @@ function App() {
     .slice(0, -1)
     .join('/');
 
-  const getCategorizedList = (initialList) =>
-    Object.values(
-      initialList.reduce((acc, value) => {
-        const keys = value.categorys;
-        keys.map((key) => {
-          const newValue = { ...value };
-          newValue.section = key;
-          delete newValue.categorys;
-          if (!acc[key.name]) return (acc[key.name] = [newValue]);
-          else return acc[key.name].push(newValue);
-        });
-
-        return acc;
-      }, {})
-    );
-
-  const collections = getCategorizedList(initialCollections);
-
-  const getCatalogSectionList = (category) => {
-    return collections.filter((list) => {
-      return list.find((i) => i.section).section.name === category.name;
+  const modifiedList = initialCollections.reduce((acc, value) => {
+    const keys = value.categorys;
+    keys.map((key) => {
+      const newValue = { ...value };
+      newValue.section = key;
+      delete newValue.categorys;
+      // delete newValue.id;
+      return acc.push(newValue);
     });
-  };
+
+    return acc;
+  }, []);
 
   return (
     <div className="App">
@@ -125,7 +118,7 @@ function App() {
             index
             element={
               <Main
-                categorizedList={collections}
+                list={modifiedList}
                 handleCardClick={handleCardClick}
                 handleCatalogSectionClick={handleCatalogSectionClick}
               />
@@ -145,7 +138,8 @@ function App() {
           path="/catalog/:category"
           element={
             <CatalogSectionBox
-              list={getCatalogSectionList(selectedCatalogSection)}
+              selectedCatalogSection={selectedCatalogSection}
+              list={modifiedList}
               handleCardClick={handleCardClick}
               handleCatalogSectionClick={handleCatalogSectionClick}
             />
@@ -173,7 +167,8 @@ function App() {
               favorites={favorites}
               url={`${fromFavoritesUrl}`}
               handleCardClick={handleCardClick}
-              handleCatalogSectionClick={handleCatalogSectionClick}
+              unfavoritesClick={unfavoritesClick}
+              isLiked={isLiked}
             />
           }
         />

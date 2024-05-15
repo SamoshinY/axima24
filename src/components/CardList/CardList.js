@@ -1,7 +1,7 @@
 import './CardList.css';
 import Card from '../Card/Card';
 
-const CardList = ({ cardList, url, handleCardClick }) => {
+const CardList = ({ cardList, url, handleCardClick, unfavoritesClick }) => {
   return (
     <section className="card-list" aria-label="Карточки">
       {cardList.map((card) => {
@@ -11,6 +11,7 @@ const CardList = ({ cardList, url, handleCardClick }) => {
             url={`/${url}/${card.url}`}
             key={card.id}
             handleCardClick={handleCardClick}
+            unfavoritesClick={unfavoritesClick}
           />
         );
       })}

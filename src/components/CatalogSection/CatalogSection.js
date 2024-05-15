@@ -13,12 +13,11 @@ const CatalogSection = ({
   list,
   handleCardClick,
   handleCatalogSectionClick,
+  unfavoritesClick,
 }) => {
   const location = useLocation();
   const onMainPage = location.pathname === '/';
   const onFavoritesPage = location.pathname === '/favorites';
-
-  // console.log(onFavoritesPage);
 
   const { filteredList, buttons, handleFilterButtonClick } = useFilter(
     list,
@@ -52,6 +51,7 @@ const CatalogSection = ({
           cardList={cardsToShow}
           url={`catalog/${category.path}`}
           handleCardClick={handleCardClick}
+          unfavoritesClick={unfavoritesClick}
         />
         <div className="section__wrap-buttons">
           {filteredList.length > count

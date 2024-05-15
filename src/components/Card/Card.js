@@ -1,9 +1,17 @@
 import './Card.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const Card = ({ card, url, handleCardClick }) => {
+const Card = ({ card, url, handleCardClick, unfavoritesClick }) => {
+  const location = useLocation();
+  const onFavoritesPage = location.pathname === '/favorites';
+  // убрать константы в отдельный файл, чтобы не дублировать код
+
   const handleClick = () => {
     handleCardClick(card, url);
+  };
+
+  const handleUnfavoriteClick = () => {
+    unfavoritesClick(card);
   };
 
   return (
@@ -27,6 +35,15 @@ const Card = ({ card, url, handleCardClick }) => {
           </p>
         </div>
       </Link>
+      {onFavoritesPage && (
+        <div className="card__details-like-wrap">
+          <button
+            type="button"
+            className="card__details-unfavorites"
+            onClick={handleUnfavoriteClick}
+          ></button>
+        </div>
+      )}
     </article>
   );
 };
