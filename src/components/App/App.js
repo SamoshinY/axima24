@@ -78,7 +78,8 @@ function App() {
     const savedCard = favorites.length
       ? favorites?.find(({ name }) => name === card.name)
       : null;
-    setFavorites((state) => state.filter((c) => c.name !== savedCard.name));
+
+    setFavorites([...favorites.filter((c) => c.name !== savedCard.name)]);
   };
 
   const handleLikeClick = (card, isLiked) => {
@@ -168,7 +169,6 @@ function App() {
               url={`${fromFavoritesUrl}`}
               handleCardClick={handleCardClick}
               unfavoritesClick={unfavoritesClick}
-              isLiked={isLiked}
             />
           }
         />

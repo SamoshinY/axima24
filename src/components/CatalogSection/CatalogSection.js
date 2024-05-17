@@ -14,6 +14,7 @@ const CatalogSection = ({
   handleCardClick,
   handleCatalogSectionClick,
   unfavoritesClick,
+  // isLiked,
 }) => {
   const location = useLocation();
   const onMainPage = location.pathname === '/';
