@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-
 import './CatalogSectionBox.css';
 import CatalogSection from '../CatalogSection/CatalogSection';
 
@@ -52,8 +51,6 @@ const CatalogSectionBox = ({
     default:
       resultList = getCatalogSectionList(selectedCatalogSection);
   }
-
-  console.log(resultList);
 
   return (
     <section className="section" aria-label="Категории">

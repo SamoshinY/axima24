@@ -1,12 +1,12 @@
+import { Link, useLocation } from 'react-router-dom';
+import { usePagination } from '../../hooks/usePagination';
+import { useFilter } from '../../hooks/useFilter';
 import './CatalogSection.css';
 import PageHeader from '../PageHeader/PageHeader';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import CardList from '../CardList/CardList';
 import MoreButton from '../MoreButton/MoreButton';
 import FilterButtonGroup from '../FilterButtonGroup/FilterButtonGroup';
-import { usePagination } from '../../hooks/usePagination';
-import { useFilter } from '../../hooks/useFilter';
-import { Link, useLocation } from 'react-router-dom';
 
 const CatalogSection = ({
   category,
@@ -14,7 +14,6 @@ const CatalogSection = ({
   handleCardClick,
   handleCatalogSectionClick,
   unfavoritesClick,
-  // isLiked,
 }) => {
   const location = useLocation();
   const onMainPage = location.pathname === '/';

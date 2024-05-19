@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import getUniqueValues from '../utils/getUniqueValues';
 
 export const useFilter = (list, option) => {
   const [filteredList, setFilteredList] = useState(list);
+
+  // меняем состояние при изменении входящего массива
+  useEffect(() => {
+    setFilteredList(list);
+  }, [list]);
 
   const handleFilterButtonClick = (event) => {
     const filteredSizeList = list.filter(

@@ -14,7 +14,7 @@ import {
   CARDS_PER_PAGE_XL,
 } from '../utils/constants';
 
-export const usePagination = (collection) => {
+export const usePagination = (collections) => {
   const [chunkSize, setChunkSize] = useState(0);
   const [cardsPerPage, setCardsPerPage] = useState(0);
   const [next, setNext] = useState(0);
@@ -22,16 +22,14 @@ export const usePagination = (collection) => {
   const [cardsToShow, setCardsToShow] = useState([]);
 
   const location = useLocation();
-  // console.log(location.pathname);
   const cardsPerPageMax =
     location.pathname === '/' ? CARDS_PER_PAGE_XL : CARDS_PER_PAGE_L;
-  // console.log(chankSizeMax, CHUNK_SIZE_L);
 
   useEffect(() => {
-    setCardsToShow(collection.slice(0, cardsPerPage));
+    setCardsToShow(collections.slice(0, cardsPerPage));
     setNext(cardsPerPage);
     setCount(cardsPerPage);
-  }, [collection, chunkSize, cardsPerPage]);
+  }, [collections, chunkSize, cardsPerPage]);
 
   useEffect(() => {
     getCHUNK_SIZE();
@@ -65,7 +63,7 @@ export const usePagination = (collection) => {
   };
 
   const getCardsToShow = (start, end) => {
-    const slicedCards = collection.slice(start, end);
+    const slicedCards = collections.slice(start, end);
     const currentCardsArray = [...cardsToShow, ...slicedCards];
     setCount(count + slicedCards.length);
     setCardsToShow(currentCardsArray);
