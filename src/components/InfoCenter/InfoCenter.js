@@ -7,7 +7,7 @@ import { infocenter } from '../../utils/infocenter';
 import { useLocation } from 'react-router-dom';
 import { usePagination } from '../../hooks/usePagination';
 
-const InfoCenter = () => {
+const InfoCenter = ({ handleInfoCardClick }) => {
   const location = useLocation();
   const { handleShowMoreCards, cardsToShow, count, chunkSize } =
     usePagination(infocenter);
@@ -28,7 +28,8 @@ const InfoCenter = () => {
             <article className="info__section" key={card.id}>
               <InfoCard
                 card={card}
-                url={`info/${card.subsection}/${card.url}`}
+                url={`/info/${card.subsection}/${card.url}`}
+                handleInfoCardClick={handleInfoCardClick}
               />
             </article>
           );

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { infocenter } from '../../utils/infocenter';
 import InfoCard from '../InfoCard/InfoCard';
 
-const InfoSubsection = () => {
+const InfoSubsection = ({ handleInfoCardClick }) => {
   let { subsection } = useParams();
   const filteredList = infocenter.filter((f) => f.subsection === subsection);
 
@@ -24,7 +24,11 @@ const InfoSubsection = () => {
         {filteredList.map((card) => {
           return (
             <article key={card.id}>
-              <InfoCard card={card} url={card.url} />
+              <InfoCard
+                card={card}
+                url={`/info/${subsection}/${card.url}`}
+                handleInfoCardClick={handleInfoCardClick}
+              />
             </article>
           );
         })}

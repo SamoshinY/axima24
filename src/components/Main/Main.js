@@ -4,7 +4,12 @@ import CatalogSectionBox from '../CatalogSectionBox/CatalogSectionBox';
 import InfoCenter from '../InfoCenter/InfoCenter';
 import PromoSection from '../PromoSection/PromoSection';
 
-function Main({ list, handleCardClick, handleCatalogSectionClick }) {
+function Main({
+  list,
+  handleCardClick,
+  handleCatalogSectionClick,
+  handleInfoCardClick,
+}) {
   return (
     <div className="Main">
       <SliderMain />
@@ -15,7 +20,7 @@ function Main({ list, handleCardClick, handleCatalogSectionClick }) {
       />
 
       <PromoSection />
-      <InfoCenter />
+      <InfoCenter handleInfoCardClick={handleInfoCardClick} />
     </div>
   );
 }

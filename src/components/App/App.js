@@ -30,6 +30,8 @@ function App() {
   const initialFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
   const [selectedCard, setSelectedCard] = useState(initialSelectedCard);
+  const [selectedInfoCard, setSelectedInfoCard] = useState([]);
+  // const [selectedInfoSection, setSelectedInfoSection] = useState();
   const [selectedCardUrl, setSelectedCardUrl] = useState(
     initialSelectedCardUrl
   );
@@ -42,6 +44,14 @@ function App() {
     setSelectedCard(card);
     setSelectedCardUrl(url);
   };
+
+  const handleInfoCardClick = (card) => {
+    setSelectedInfoCard(card);
+  };
+
+  // const handleInfoSectionClick = (section) => {
+  //   selectedInfoSection(section);
+  // };
 
   useEffect(() => {
     localStorage.setItem('selectedCard', JSON.stringify(selectedCard));
@@ -122,6 +132,8 @@ function App() {
                 list={modifiedList}
                 handleCardClick={handleCardClick}
                 handleCatalogSectionClick={handleCatalogSectionClick}
+                handleInfoCardClick={handleInfoCardClick}
+                // handleInfoSectionClick={handleInfoSectionClick}
               />
             }
           />
@@ -156,9 +168,28 @@ function App() {
             />
           }
         />
-        <Route path="/info" element={<InfoCenter />} />
-        <Route path="/info/:subsection" element={<InfoSubsection />} />
-        <Route path="/info/:subsection/:content" element={<InfoPage />} />
+        <Route
+          path="/info"
+          element={
+            <InfoCenter
+              handleInfoCardClick={handleInfoCardClick}
+              // handleInfoSectionClick={handleInfoSectionClick}
+            />
+          }
+        />
+        <Route
+          path="/info/:subsection"
+          element={
+            <InfoSubsection
+              handleInfoCardClick={handleInfoCardClick}
+              // subsection={selectedInfoSection}
+            />
+          }
+        />
+        <Route
+          path="/info/:subsection/:content"
+          element={<InfoPage infoCard={selectedInfoCard} />}
+        />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contacts" element={<Contacts />} />
         <Route

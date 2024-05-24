@@ -1,32 +1,27 @@
 import './InfoPage.css';
 import PageHeader from '../PageHeader/PageHeader';
-import { useParams } from 'react-router-dom';
-import { infocenter } from '../../utils/infocenter';
 
-const InfoPage = () => {
-  let { content } = useParams();
-  const article = infocenter.find((f) => f.url === content);
-
+const InfoPage = ({ infoCard }) => {
   return (
     <>
-      <PageHeader header={article.title} />
+      <PageHeader header={infoCard.title} />
       <div className="info-page" aria-label="Контент инфоцентра">
         <div className="info-page__wrap">
           <span className="info-page__subsection">
-            {(article.subsection === 'news' && 'Новости') ||
-              (article.subsection === 'articles' && 'Статьи') ||
-              (article.subsection === 'events' && 'Мероприятия')}
+            {(infoCard.subsection === 'news' && 'Новости') ||
+              (infoCard.subsection === 'articles' && 'Статьи') ||
+              (infoCard.subsection === 'events' && 'Мероприятия')}
           </span>
-          <span className="info-page__date">{article.date}</span>
+          <span className="info-page__date">{infoCard.date}</span>
         </div>
         <div className="info-page__image-container">
           <img
             className="info-page__image"
-            src={article.img}
-            alt={article.title}
+            src={infoCard.img}
+            alt={infoCard.title}
           />
         </div>
-        <p className="info-page__subtitle">{article.subtitle}</p>
+        <p className="info-page__subtitle">{infoCard.subtitle}</p>
       </div>
     </>
   );

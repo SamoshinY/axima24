@@ -1,10 +1,13 @@
 import './InfoCard.css';
 import { Link } from 'react-router-dom';
 
-const InfoCard = ({ card, url }) => {
+const InfoCard = ({ card, url, handleInfoCardClick }) => {
+  const handleClick = () => {
+    handleInfoCardClick(card);
+  };
   return (
     <article className="info-card" aria-label="Карточка инфоцентра">
-      <Link to={url} className="info-card__link">
+      <Link to={url} className="info-card__link" onClick={handleClick}>
         <div className="info-card__image-container">
           <img className="info-card__image" src={card.img} alt={card.title} />
         </div>
