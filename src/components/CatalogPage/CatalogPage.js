@@ -6,6 +6,7 @@ const CatalogPage = ({ categorys, handleCatalogSectionClick }) => {
   return (
     <div className="catalog" aria-label='Раздел "Каталог"'>
       <PageHeader header={'Каталог'} />
+
       <section className="catalog__content" aria-label="Карточки">
         {categorys.map((card) => {
           return (

@@ -1,7 +1,7 @@
 import './BreadcrumbsMe.css';
 import { Link, useLocation } from 'react-router-dom';
 
-function Breadcrumbs() {
+const Breadcrumbs = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   let breadcrumbPath = '';
@@ -9,21 +9,22 @@ function Breadcrumbs() {
   return (
     <div className="breadcrumbs">
       <Link to="/">Главная</Link>
-      {pathnames.map((name, index) => {
-        breadcrumbPath += `/${name}`;
+
+      {pathnames.map((pathItem, index) => {
+        breadcrumbPath += `/${pathItem}`;
         const isLast = index === pathnames.length - 1;
 
         return isLast ? (
-          <span key={breadcrumbPath}> &rsaquo; {name}</span>
+          <span> &rsaquo; {pathItem}</span>
         ) : (
-          <span key={breadcrumbPath}>
+          <span>
             {' '}
-            &rsaquo; <Link to={breadcrumbPath}>{name}</Link>
+            &rsaquo; <Link to={breadcrumbPath}>{pathItem}</Link>
           </span>
         );
       })}
     </div>
   );
-}
+};
 
 export default Breadcrumbs;

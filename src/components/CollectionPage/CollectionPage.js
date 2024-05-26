@@ -12,7 +12,8 @@ const CollectionPage = ({ collection, isLiked, handleLikeClick }) => {
 
   return (
     <div className="collection-page" aria-label="Страницв товара">
-      <BreadcrumbsMe />
+      {/* <BreadcrumbsMe /> */}
+      <BreadcrumbsMe firstItem={'Каталог'} />
       <section className="collection-page__info">
         <div className="collection-page__info-like-wrap">
           <button

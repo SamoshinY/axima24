@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { Route, Routes, Outlet } from 'react-router-dom';
+import { Link, Route, Routes, Outlet } from 'react-router-dom';
+
 import { categorys } from '../../utils/categorys';
 import { initialCollections } from '../../utils/collections';
 import Header from '../Header/Header';
@@ -18,7 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import FavoritesPage from '../FavoritesPage/FavoritesPage';
 import CatalogSectionBox from '../CatalogSectionBox/CatalogSectionBox';
 
-function App() {
+const App = () => {
   ScrollToTop();
 
   const initialSelectedCard =
@@ -190,7 +191,11 @@ function App() {
           path="/info/:subsection/:content"
           element={<InfoPage infoCard={selectedInfoCard} />}
         />
-        <Route path="/about" element={<AboutUs />} />
+        <Route
+          path="/about"
+          element={<AboutUs />}
+          handle={{ crumb: () => <Link to="/message">Messages</Link> }}
+        />
         <Route path="/contacts" element={<Contacts />} />
         <Route
           path="/favorites"
@@ -208,6 +213,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
