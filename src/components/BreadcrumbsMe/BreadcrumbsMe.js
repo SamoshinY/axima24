@@ -1,29 +1,44 @@
 import './BreadcrumbsMe.css';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useMatches } from 'react-router-dom';
 
 const Breadcrumbs = () => {
+  let matches = useMatches();
+  let crumbs = matches
+    .filter((match) => Boolean(match.handle?.crumb))
+    .map((match) => match.handle.crumb(match.data));
+
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
   let breadcrumbPath = '';
 
   return (
-    <div className="breadcrumbs">
-      <Link to="/">Главная</Link>
+    <>
+      <div className="breadcrumbs">
+        <Link to="/">Главная</Link>
 
-      {pathnames.map((pathItem, index) => {
-        breadcrumbPath += `/${pathItem}`;
-        const isLast = index === pathnames.length - 1;
+        {pathnames.map((pathItem, index) => {
+          breadcrumbPath += `/${pathItem}`;
+          const isLast = index === pathnames.length - 1;
 
-        return isLast ? (
-          <span> &rsaquo; {pathItem}</span>
-        ) : (
-          <span>
-            {' '}
-            &rsaquo; <Link to={breadcrumbPath}>{pathItem}</Link>
-          </span>
-        );
-      })}
-    </div>
+          return isLast ? (
+            <span> &rsaquo; {pathItem}</span>
+          ) : (
+            <span>
+              {' '}
+              &rsaquo; <Link to={breadcrumbPath}>{pathItem}</Link>
+            </span>
+          );
+        })}
+      </div>
+
+      <div>
+        <ol>
+          {crumbs.map((crumb, index) => (
+            <li key={index}>{crumb}</li>
+          ))}
+        </ol>
+      </div>
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import './CollectionPage.css';
-import BreadcrumbsMe from '../BreadcrumbsMe/BreadcrumbsMe';
+// import BreadcrumbsMe from '../BreadcrumbsMe/BreadcrumbsMe';
+import BreadcrumbsNew from '../BreadcrumbsNew/BreadcrumbsNew';
 
 const CollectionPage = ({ collection, isLiked, handleLikeClick }) => {
   const handleCardLike = () => {
@@ -13,7 +14,7 @@ const CollectionPage = ({ collection, isLiked, handleLikeClick }) => {
   return (
     <div className="collection-page" aria-label="Страницв товара">
       {/* <BreadcrumbsMe /> */}
-      <BreadcrumbsMe firstItem={'Каталог'} />
+      <BreadcrumbsNew />
       <section className="collection-page__info">
         <div className="collection-page__info-like-wrap">
           <button

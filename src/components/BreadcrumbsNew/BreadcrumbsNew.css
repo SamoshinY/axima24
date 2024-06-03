@@ -1,10 +1,10 @@
-.breadcrumbs {
+.breadcrumbs-new {
   /* max-width: 1200px; */
   padding: 105px 145px 20px;
   background-color: #181a1b;
 }
 
-.breadcrumbs a {
+.breadcrumbs-new a {
   color: #ddd;
   text-decoration: none;
 }

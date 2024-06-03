@@ -1,22 +1,67 @@
 import './BreadcrumbsNew.css';
-import { useMatches } from 'react-router-dom';
+import { useMatches, Link } from 'react-router-dom';
+import { categorys } from '../../utils/categorys';
+import { initialCollections } from '../../utils/collections';
+import { infocenter } from '../../utils/infocenter';
 
 const BreadcrumbsNew = () => {
-  let matches = useMatches();
-  console.log(matches);
-  let crumbs = matches
-    //first get rid of any matches that don't have handle and crumb
-    .filter((match) => Boolean(match.handle?.crumb))
-    //now map them into an array of elements, passing the loader
-    //data to each one
-    .map((match) => match.handle.crumb(match.data));
-  return (
-    <ol>
-      {crumbs.map((crumb, index) => (
-        <li key={index}>{crumb}</li>
-      ))}
-    </ol>
-  );
+  const matches = useMatches();
+
+  const crumbsData = matches.filter((match) => Boolean(match.handle));
+
+  const breadcrumbs = crumbsData.map((match, index) => {
+    const isLast = index === crumbsData.length - 1;
+
+    const handleData = match.handle.breadcrumb(match.data);
+
+    // console.log(match.params.subsection);
+
+    const getInfoSectionName = () => {
+      const infoSection = infocenter.find(
+        (i) => i.subsection === match.params.subsection
+      ).subsection;
+      if (infoSection === 'news') return 'Новости';
+      if (infoSection === 'events') return 'Мероприятия';
+      if (infoSection === 'articles') return 'Статьи';
+    };
+
+    let crumb;
+
+    switch (true) {
+      case handleData === 'Категория':
+        crumb = categorys.find((i) => i.path === match.params.category)?.name;
+        break;
+      case handleData === 'Коллекция':
+        crumb = initialCollections.find(
+          (i) => i.url === match.params.collection
+        )?.name;
+        break;
+      case handleData === 'Инфораздел':
+        crumb = getInfoSectionName();
+        break;
+      case handleData === 'Контент':
+        crumb = infocenter.find(
+          (i) => i?.subsection === match.params.subsection
+        )?.title;
+        break;
+
+      default:
+        crumb = handleData;
+    }
+
+    return (
+      <span key={match.pathname}>
+        {isLast ? (
+          <span>{crumb}</span>
+        ) : (
+          <Link to={match.pathname}>{crumb}</Link>
+        )}
+        {!isLast && ' > '}
+      </span>
+    );
+  });
+
+  return <nav className="breadcrumbs-new">{breadcrumbs}</nav>;
 };
 
 export default BreadcrumbsNew;

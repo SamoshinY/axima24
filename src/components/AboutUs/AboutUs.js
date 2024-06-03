@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './AboutUs.css';
 import PageHeader from '../PageHeader/PageHeader';
-import BreadcrumbsNew from '../BreadcrumbsNew/BreadcrumbsNew';
+// import BreadcrumbsNew from '../BreadcrumbsNew/BreadcrumbsNew';
 import aximaBrand from '../../images/section-content/f361578da1f3f29257c4090d7a7e82d6_708x432x0.jpg';
 import modernization from '../../images/section-content/modernization1jpg.jpg';
 import assortment from '../../images/section-content/assortment.jpg';
@@ -11,11 +11,11 @@ function AboutUs() {
     <div className="about">
       <PageHeader header={'О нас'} />
 
-      <div className="breadcrumbs">
+      {/* <div className="breadcrumbs">
         <Link to="/">Главная</Link>
         <span> &rsaquo; О нас</span>
-      </div>
-      <BreadcrumbsNew />
+      </div> */}
+      {/* <BreadcrumbsNew /> */}
 
       <section className="about__brand" aria-label="brand">
         <div className="about__brand-wrap">
